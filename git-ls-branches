@@ -73,6 +73,9 @@ main () {
                         ;;
                 esac
                 ;;
+            q)
+                quiet=t
+                ;;
             h)
                 usage
                 exit
@@ -97,6 +100,9 @@ main () {
                         ;;
                     merged\=*|no-merged\=*)
                         args="$args --$OPTARG"
+                        ;;
+                    quiet)
+                        quiet=t
                         ;;
                     help)
                         usage
@@ -185,7 +191,11 @@ ptime=\"\$ptime_$hash\"
             remotes/*) branchf="$rbranchf" ;;
             *)         branchf="$lbranchf" ;;
         esac
-        printf "%-2s$branchf %s\n" "$sign" "$branch$info$rest"
+        if [ -n "$quiet" ]; then
+            printf "%s\n" "$branch"
+        else
+            printf "%-2s$branchf %s\n" "$sign" "$branch$info$rest"
+        fi
     done
 }
 
