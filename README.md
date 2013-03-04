@@ -12,6 +12,7 @@ Usage
     git ls-branches [options]
 
         -v, --verbose         be verbose
+        -q, --quiet           print only branch names
         --color               turn on color even if stdout is not a tty
         --no-pager            do not pipe output into a pager
 
